@@ -1,15 +1,20 @@
 # python test product
 
+import os #operating system
+
 #load file
 products = []
-with open('products.csv', 'r', encoding='utf-8') as f:
-	for line in f:
-		if '商品' in line:
-			continue # jump to the next loop
-		name, price = line.strip().split(',')
-		products.append([name, price])
-print(products)
-
+if os.path.isfile('products.csv'): # check file exist or not
+	print('yeah! the file exists!')
+	with open('products.csv', 'r', encoding = 'utf-8') as f:
+		for line in f:
+			if '商品' in line:
+				continue # jump to the next loop
+			name, price = line.strip().split(',')
+			products.append([name, price])
+	print(products)
+else:
+	print('There is no this file!')
 
 #user input
 while True:
