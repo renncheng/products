@@ -1,5 +1,10 @@
 # python test product
 products = []
+with open('products.csv', 'r', encoding='utf-8') as f:
+	for line in f:
+		name, price = line.strip().split(',')
+		products.append([name, price])
+print(products)
 
 while True:
 	name = input('Please key in produce name, press "q" to quit. ')
