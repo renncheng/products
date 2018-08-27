@@ -1,4 +1,6 @@
 # python test product
+
+#load file
 products = []
 with open('products.csv', 'r', encoding='utf-8') as f:
 	for line in f:
@@ -8,6 +10,8 @@ with open('products.csv', 'r', encoding='utf-8') as f:
 		products.append([name, price])
 print(products)
 
+
+#user input
 while True:
 	name = input('Please key in produce name, press "q" to quit. ')
 	if name == 'q':
@@ -17,9 +21,11 @@ while True:
 	products.append([name, price])
 print(products)
 
+#print record
 for p in products:
 	print('The price of ', p[0], 'is ', p[1])
 
+#write file
 with open('products.csv', 'w', encoding='utf-8') as f:
 	f.write('商品Product,價格Price\n')
 	for p in products:
