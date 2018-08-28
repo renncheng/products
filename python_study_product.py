@@ -3,11 +3,11 @@
 import os #operating system
 
 #load file
-def read_file():
+def read_file(filename):
 	products = []
-	if os.path.isfile('products.csv'): # check file exist or not
+	if os.path.isfile(filename): # check file exist or not
 		print('yeah! the file exists!')
-		with open('products.csv', 'r', encoding = 'utf-8') as f:
+		with open(filename, 'r', encoding = 'utf-8') as f:
 			for line in f:
 				if '商品' in line:
 					continue # jump to the next loop
@@ -16,9 +16,10 @@ def read_file():
 		print(products)
 	else:
 		print('There is no this file!')
+	return products
 
 #user input
-def user_input():
+def user_input(products):
 	while True:
 		name = input('Please key in produce name, press "q" to quit. ')
 		if name == 'q':
@@ -27,20 +28,21 @@ def user_input():
 		price = int(price)
 		products.append([name, price])
 	print(products)
+	return products
 
 #print record
-def print_record():
+def print_record(products):
 	for p in products:
 		print('The price of ', p[0], 'is ', p[1])
 
 #write file
-def write_file():
-	with open('products.csv', 'w', encoding='utf-8') as f:
+def write_file(filename, products):
+	with open(filename, 'w', encoding='utf-8') as f:
 		f.write('商品Product,價格Price\n')
 		for p in products:
 			f.write(p[0] + ',' + str(p[1]) + '\n')
 
-read_file()
-user_input()
-print_record()
-write_file()
+products = read_file('products.csv')
+products = user_input(products)
+print_record(products)
+write_file('products.csv', products)
